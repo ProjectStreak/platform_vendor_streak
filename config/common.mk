@@ -95,6 +95,9 @@ PRODUCT_PACKAGE_OVERLAYS += \
     vendor/streak/overlay/common \
     vendor/streak/overlay/no-rro
 
+# Inherit from bootanimation
+$(call inherit-product, vendor/streak/bootanimation/bootanimation.mk)
+
 # Inherit from our branding
 $(call inherit-product, vendor/streak/config/branding.mk)
 
