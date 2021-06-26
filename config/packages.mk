@@ -25,6 +25,10 @@ PRODUCT_PACKAGES += \
     wget \
     zip
 
+# Navbar
+PRODUCT_PACKAGES += \
+    NavigationBarNoHintOverlay
+
 # Openssh
 PRODUCT_PACKAGES += \
     scp \
