@@ -75,7 +75,10 @@ include vendor/streak/config/branding.mk
 include vendor/streak/config/bootanimation.mk
 
 # Include GApps
+TARGET_BUILD_GAPPS ?= true
+ifeq ($(TARGET_BUILD_GAPPS),true)
 include vendor/gapps/common/common-vendor.mk
+endif
 
 # Include Pixel Sounds
 include vendor/google/sounds/sounds-vendor.mk
