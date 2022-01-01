@@ -260,12 +260,12 @@ function streakremote()
         local PROJECT=$REMOTE
     fi
 
-    local STREAK_USER=$(git config --get review.review.projectstreak.org.username)
+    local STREAK_USER=$(git config --get review.review.ejbtrd.pl.username)
     if [ -z "$STREAK_USER" ]
     then
-        git remote add streak ssh://review.projectstreak.org:29418/$PFX$PROJECT
+        git remote add streak ssh://review.ejbtrd.pl:29418/$PFX$PROJECT
     else
-        git remote add streak ssh://$STREAK_USER@review.projectstreak.org:29418/$PFX$PROJECT
+        git remote add streak ssh://$STREAK_USER@review.ejbtrd.pl:29418/$PFX$PROJECT
     fi
     echo "Remote 'streak' created"
 }
@@ -447,7 +447,7 @@ function streakgerrit() {
         $FUNCNAME help
         return 1
     fi
-    local user=`git config --get review.review.projectstreak.org.username`
+    local user=`git config --get review.review.ejbtrd.pl.username`
     local review=`git config --get remote.github.review`
     local project=`git config --get remote.github.projectname`
     local command=$1
@@ -704,7 +704,7 @@ function streakrebase() {
     echo "Bringing it up to date..."
     repo sync .
     echo "Fetching change..."
-    git fetch "http://review.projectstreak.org/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
+    git fetch "http://review.ejbtrd.pl/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
     if [ "$?" != "0" ]; then
         echo "Error cherry-picking. Not uploading!"
         return
