@@ -151,4 +151,10 @@
     <bool name="config_supportsMicToggle">true</bool>
     <!-- Whether this device is supporting the camera toggle -->
     <bool name="config_supportsCamToggle">true</bool>
+
+    <!-- Font -->
+    <string name="config_bodyFontFamily">inter</string>
+    <string name="config_bodyFontFamilyMedium">inter-medium</string>
+    <string name="config_headlineFontFamily">inter</string>
+    <string name="config_headlineFontFamilyMedium">inter-medium</string>
 </resources>
