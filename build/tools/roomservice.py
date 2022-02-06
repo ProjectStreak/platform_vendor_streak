@@ -45,14 +45,14 @@ except ImportError:
 DEBUG = False
 
 custom_local_manifest = ".repo/local_manifests/streak.xml"
-custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'android_11')
+custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'twelve')
 custom_dependencies = "streak.dependencies"
 org_manifest = "ProjectStreak-Devices"  # leave empty if org is provided in manifest
 org_display = "ProjectStreak-Devices"  # needed for displaying
 
 default_manifest = ".repo/manifests/default.xml"
-streak_manifest = ".repo/manifests/extras/streak.xml"
-external_manifest = ".repo/manifests/extras/external.xml"
+streak_manifest = ".repo/manifests/extra/streak.xml"
+external_manifest = ".repo/manifests/extra/external.xml"
 
 github_auth = os.getenv('GITHUB_API_TOKEN', None)
 
