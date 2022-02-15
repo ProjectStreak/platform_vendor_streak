@@ -923,6 +923,10 @@ function repopick() {
     $T/vendor/streak/build/tools/repopick.py $@
 }
 
+function streak_release() {
+    $ANDROID_BUILD_TOP/vendor/streak/build/tools/release.py $@
+}
+
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
