@@ -53,7 +53,7 @@ if exp == "Y" or exp == "y":
 else:
     isExperimental = False
 
-release = repo.create_git_release(tag, title, "Automated release of " + zip_name, prerelease=isExperimental)
+release = repo.create_git_release(tag, title, "Automated release of " + zip_name.split("/")[-1], prerelease=isExperimental)
 print("Release created: " + str(release.title))
 print("Uploading asset...")
 release.upload_asset(zip_name)
