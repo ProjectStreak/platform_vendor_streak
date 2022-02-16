@@ -1,6 +1,8 @@
 # ProjectStreak packages
 PRODUCT_PACKAGES += \
     Updater \
+    SimpleGallery \
+    SimpleCalendar \
     ThemePicker
 
 # Charger
