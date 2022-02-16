@@ -1,5 +1,7 @@
 # Streak packages
 PRODUCT_PACKAGES += \
+    SimpleGallery \
+    SimpleCalendar \
     Updater
 
 PRODUCT_COPY_FILES += \
