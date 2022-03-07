@@ -45,7 +45,7 @@ except ImportError:
 DEBUG = False
 
 custom_local_manifest = ".repo/local_manifests/streak.xml"
-custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'twelve')
+custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'twelve.one')
 custom_dependencies = "streak.dependencies"
 org_manifest = "ProjectStreak-Devices"  # leave empty if org is provided in manifest
 org_display = "ProjectStreak-Devices"  # needed for displaying
