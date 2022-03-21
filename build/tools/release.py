@@ -47,8 +47,8 @@ print("Repo found for your device: " + repo.name)
 tag = date + "-" + variant
 title = "Streak-" + tag
 
-exp = input("Is this an experimental build? (Y/y) (Default: N) ")
-if exp == "Y" or exp == "y":
+exp = input("Is this an experimental build? (y/n) (Default: n) ")
+if exp == "y":
     isExperimental = True
 else:
     isExperimental = False
