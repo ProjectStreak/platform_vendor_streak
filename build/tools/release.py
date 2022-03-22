@@ -47,11 +47,11 @@ print("Repo found for your device: " + repo.name)
 tag = date + "-" + variant
 title = "Streak-" + tag
 
-exp = input("Is this an experimental build? (y/n) (Default: n) ")
-if exp == "y":
-    isExperimental = True
-else:
+exp = input("Is this an experimental build? (y/n) (Default: y) ")
+if exp == "n":
     isExperimental = False
+else:
+    isExperimental = True
 
 release = repo.create_git_release(tag, title, "Automated release of " + zip_name.split("/")[-1], prerelease=isExperimental)
 print("Release created: " + str(release.title))
