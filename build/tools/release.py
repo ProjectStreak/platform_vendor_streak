@@ -16,14 +16,19 @@ home = str(Path.home())
 token = str(open(home + "/.githubtoken", "r").read().strip())
 g = Github(token)
 
-if sys.argv[1].find("https") != -1:
-    print("URL detected, downloading...")
-    zip_name = (sys.argv[1]).split("/")[-1]
-    req = requests.get(sys.argv[1], allow_redirects=True)
-    open(zip_name, "wb").write(req.content)
+if len(sys.argv) > 1:
+    if sys.argv[1].find("https") != -1:
+        print("URL detected, downloading...")
+        zip_name = (sys.argv[1]).split("/")[-1]
+        req = requests.get(sys.argv[1], allow_redirects=True)
+        open(zip_name, "wb").write(req.content)
+    elif sys.argv[1].find(".zip") != -1:
+        print("File detected...")
+        zip_name = sys.argv[1]
+    else:
+        sys.exit("Incorrect file/URL!")
 else:
-    print("File detected...")
-    zip_name = sys.argv[1]
+    sys.exit("Please provide file/URL!")
 
 codename = zip_name.split("-")[4]
 date = zip_name.split("-")[5] + "-" + zip_name.split("-")[6]
