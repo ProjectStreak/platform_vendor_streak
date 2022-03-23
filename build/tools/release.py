@@ -1,11 +1,16 @@
 #!/usr/bin/python3
 
-from github import Github, GithubException
 from pathlib import Path
 import json
 import os
 import requests
 import sys
+
+try:
+    from github import Github, GithubException
+except ImportError:
+    sys.exit("Please install pygithub package via pip")
+
 
 home = str(Path.home())
 token = str(open(home + "/.githubtoken", "r").read().strip())
