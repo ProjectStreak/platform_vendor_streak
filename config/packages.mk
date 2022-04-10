@@ -1,9 +1,13 @@
 # ProjectStreak packages
 PRODUCT_PACKAGES += \
-    Updater \
     SimpleGallery \
     SimpleCalendar \
     ThemePicker
+
+ifeq ($(STREAK_BUILD_TYPE),OFFICIAL)
+PRODUCT_PACKAGES += \
+    Updater
+endif
 
 # Charger
 PRODUCT_PACKAGES += \
