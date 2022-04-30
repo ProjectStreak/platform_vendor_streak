@@ -28,7 +28,7 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/streak/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/streak/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/streak/prebuilt/common/bin/50-lineage.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-lineage.sh
+    vendor/streak/prebuilt/common/bin/50-streak.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-streak.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
