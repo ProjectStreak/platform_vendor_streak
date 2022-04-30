@@ -28,6 +28,7 @@ PRODUCT_PACKAGES += \
 
 # Navbar
 PRODUCT_PACKAGES += \
+    NavigationBarModeGesturalOverlayFS \
     NavigationBarNoHintOverlay
 
 # Openssh
