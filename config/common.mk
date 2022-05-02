@@ -1,7 +1,4 @@
-# Allow vendor/extra to override any property by setting it first
-$(call inherit-product-if-exists, vendor/extra/product.mk)
-
-PRODUCT_BRAND ?= LineageOS
+PRODUCT_BRAND ?= ProjectStreak
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -26,18 +23,18 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/lineage/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/lineage/prebuilt/common/bin/50-lineage.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-lineage.sh
+    vendor/streak/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/streak/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/streak/prebuilt/common/bin/50-streak.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-streak.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-lineage.sh
+    system/addon.d/50-streak.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/lineage/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/streak/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/streak/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/streak/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -50,17 +47,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 endif
 
-# Lineage-specific broadcast actions whitelist
+# Streak-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/lineage-sysconfig.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lineage-sysconfig.xml
-
-# Lineage-specific init rc file
-PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/init/init.lineage-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.lineage-system_ext.rc
+    vendor/streak/prebuilt/common/etc/init/init.streak-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.streak-system_ext.rc
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.nfc.beam.xml
+    vendor/streak/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -70,9 +63,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:$(TARGET_COPY_OUT_PRODUCT)/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is Lineage!
+# This is Streak!
 PRODUCT_COPY_FILES += \
-    vendor/lineage/config/permissions/org.lineageos.android.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.android.xml
+    vendor/streak/config/permissions/com.streak.android.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.streak.android.xml
 
 # Disable remote keyguard animation
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -83,15 +76,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
 # Include AOSP audio files
-include vendor/lineage/config/aosp_audio.mk
+include vendor/streak/config/aosp_audio.mk
 
 # Include Lineage audio files
 include vendor/lineage/config/lineage_audio.mk
-
-ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
-# Lineage SDK
-include vendor/lineage/config/lineage_sdk_common.mk
-endif
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -110,26 +98,22 @@ TARGET_SCREEN_HEIGHT ?= 1920
 PRODUCT_PACKAGES += \
     bootanimation.zip
 
-# Lineage packages
+# Streak packages
 PRODUCT_PACKAGES += \
-    LineageParts \
-    LineageSettingsProvider \
-    LineageSetupWizard \
     Updater
 
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/init/init.lineage-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.lineage-updater.rc
+    vendor/streak/prebuilt/common/etc/init/init.streak-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.streak-updater.rc
 
 # Themes
 PRODUCT_PACKAGES += \
-    LineageThemesStub \
     ThemePicker
 
 # Config
 PRODUCT_PACKAGES += \
     SimpleDeviceConfig
 
-# Extra tools in Lineage
+# Extra tools in Streak
 PRODUCT_PACKAGES += \
     7z \
     bash \
@@ -160,7 +144,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/streak/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -193,24 +177,10 @@ endif
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay/no-rro
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/streak/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/lineage/overlay/common \
-    vendor/lineage/overlay/no-rro
+    vendor/streak/overlay/common \
+    vendor/streak/overlay/no-rro
 
-PRODUCT_PACKAGES += \
-    TrebuchetOverlay
-
-# Translations
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/crowdin/overlay
-PRODUCT_PACKAGE_OVERLAYS += vendor/crowdin/overlay
-
-PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/lineage/build/target/product/security/lineage
-
-include vendor/lineage/config/version.mk
-
--include vendor/lineage-priv/keys/keys.mk
-
--include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/lineage/config/partner_gms.mk
+# Inherit from our branding
+$(call inherit-product, vendor/streak/config/branding.mk)

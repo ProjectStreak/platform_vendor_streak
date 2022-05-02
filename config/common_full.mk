@@ -1,5 +1,5 @@
-# Inherit common Lineage stuff
-$(call inherit-product, vendor/lineage/config/common_mobile.mk)
+# Inherit common Streak stuff
+$(call inherit-product, vendor/streak/config/common_mobile.mk)
 
 PRODUCT_SIZE := full
 

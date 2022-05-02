@@ -1,2 +1,2 @@
-# Include LineageOS versions
-include $(TOPDIR)vendor/lineage/build/core/main_version.mk
+# Include ProjectStreak versions
+include $(TOPDIR)vendor/streak/build/core/main_version.mk
