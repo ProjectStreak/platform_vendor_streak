@@ -115,3 +115,6 @@ $(call inherit-product, vendor/streak/config/packages.mk)
 
 # Inherit from gapps
 $(call inherit-product, vendor/gapps/common/common-vendor.mk)
+
+# Inherit from themes
+$(call inherit-product, vendor/themes/common.mk)
