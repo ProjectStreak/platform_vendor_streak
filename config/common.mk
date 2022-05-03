@@ -105,10 +105,8 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/streak/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/streak/overlay/common \
-    vendor/streak/overlay/no-rro
 
 # Inherit from bootanimation
 $(call inherit-product, vendor/streak/bootanimation/bootanimation.mk)
