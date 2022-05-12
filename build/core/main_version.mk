@@ -13,5 +13,4 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.mod.version=$(BUILD_ID)-$(BUILD_DATE)-$(STREAK_PLATFORM_VERSION) \
     ro.streak.fingerprint=$(ROM_FINGERPRINT) \
     ro.streak.buildtype=$(STREAK_BUILD_TYPE) \
-    ro.streak.build_date=$(BUILD_DATE) \
-    ro.streak.build.variant=$(STREAK_VARIANT)
+    ro.streak.build_date=$(BUILD_DATE)

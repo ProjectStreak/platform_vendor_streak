@@ -25,11 +25,10 @@ except IndexError:
 if "Streak" not in zip and ".zip" not in zip:
     sys.exit("Incorrect file!")
 
-codename = zipName.split("-")[4]
-date = (zipName.split("-")[5] + "-" + zipName.split("-")[6]).split(".")[0]
-variant = zipName.split("-")[3]
+codename = zipName.split("-")[3]
+date = (zipName.split("-")[4] + "-" + zipName.split("-")[5]).split(".")[0]
 
-print("Releasing " + variant + " build for " + codename)
+print("Releasing " + date + " build for " + codename)
 
 repos = g.get_organization("ProjectStreak-Devices").get_repos()
 for r in repos:
@@ -40,7 +39,7 @@ for r in repos:
 if not repo:
     sys.exit("\nERROR: Can't find repo for " + codename) 
 
-tag = date + "-" + variant
+tag = date
 title = "Streak-" + tag
 
 try:
@@ -63,7 +62,6 @@ template = {
       "datetime": datetime,
       "filename": zipName,
       "id": checksum,
-      "romtype": variant,
       "size": filesize,
       "url": url,
       "version": version
@@ -71,7 +69,7 @@ template = {
   ]
 }
 
-jsonFile = open(ANDROID_BUILD_TOP + "/streak_ota/devices/" + codename + "/" + variant.lower() + ".json", "w")
+jsonFile = open(ANDROID_BUILD_TOP + "/streak_ota/devices/" + codename + ".json", "w")
 jsonFile.write(json.dumps(template, indent=2))
 jsonFile.close()
 
