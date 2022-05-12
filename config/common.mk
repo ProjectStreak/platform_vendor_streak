@@ -120,5 +120,8 @@ $(call inherit-product, vendor/streak/config/packages.mk)
 # Inherit from gapps
 $(call inherit-product, vendor/google/gms/config.mk)
 
+# Inherit from pixel
+$(call inherit-product, vendor/google/pixel/config.mk)
+
 # Inherit from themes
 $(call inherit-product, vendor/themes/common.mk)
