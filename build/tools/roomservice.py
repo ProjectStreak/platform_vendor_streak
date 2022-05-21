@@ -39,6 +39,8 @@ except ImportError:
 
 from xml.etree import ElementTree
 
+default_revision = "twelve.one"
+
 product = sys.argv[1]
 
 if len(sys.argv) > 2:
@@ -123,12 +125,6 @@ def get_manifest_path():
     except IndexError:
         return ".repo/manifests/{}".format(m.find("include").get("name"))
 
-def get_default_revision():
-    m = ElementTree.parse(get_manifest_path())
-    d = m.findall('default')[0]
-    r = d.get('revision')
-    return r.replace('refs/heads/', '').replace('refs/tags/', '')
-
 def get_from_manifest(devicename):
     try:
         lm = ElementTree.parse(".repo/local_manifests/roomservice.xml")
@@ -203,6 +199,7 @@ def add_to_manifest(repositories, fallback_branch = None):
             project.set('revision', fallback_branch)
         else:
             print("Using default branch for %s" % repo_name)
+            project.set('revision', default_revision)
 
         lm.append(project)
 
@@ -271,7 +268,6 @@ else:
             
             manufacturer = repo_name.replace("device_", "").replace("_" + device, "")
             
-            default_revision = get_default_revision()
             print("Default revision: %s" % default_revision)
             print("Checking branch info")
             githubreq = urllib.request.Request(repository['branches_url'].replace('{/branch}', ''))
