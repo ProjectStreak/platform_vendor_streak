@@ -40,6 +40,7 @@ except ImportError:
 from xml.etree import ElementTree
 
 default_revision = "twelve.one"
+default_remote = "streak-devices"
 
 product = sys.argv[1]
 
@@ -185,12 +186,12 @@ def add_to_manifest(repositories, fallback_branch = None):
         repo_target = repository['target_path']
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('ProjectStreak-Devices/%s already fetched to %s' % (repo_name, repo_target))
+            print('%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        print('Adding dependency: ProjectStreak-Devices/%s -> %s' % (repo_name, repo_target))
+        print('Adding dependency: %s' % (repo_name))
         project = ElementTree.Element("project", attrib = { "path": repo_target,
-            "remote": "github", "name": "ProjectStreak-Devices/%s" % repo_name })
+            "name": "%s" % repo_name })
 
         if 'branch' in repository:
             project.set('revision',repository['branch'])
@@ -200,6 +201,13 @@ def add_to_manifest(repositories, fallback_branch = None):
         else:
             print("Using default branch for %s" % repo_name)
             project.set('revision', default_revision)
+
+        if 'remote' in repository:
+            print("Using %s remote for %s" % (repository['remote'], repo_name))
+            project.set('remote',repository['remote'])
+        else:
+            print("Using streak-devices remote for %s" % repo_name)
+            project.set('remote', default_remote)
 
         lm.append(project)
 
