@@ -15,6 +15,7 @@ token = str(open(home + "/.githubtoken", "r").read().strip())
 g = Github(token)
 
 ANDROID_BUILD_TOP = os.getenv("ANDROID_BUILD_TOP")
+OUT = os.getenv("OUT")
 
 try:
     zip = os.path.abspath(sys.argv[1])
@@ -50,7 +51,11 @@ try:
 except GithubException:
     sys.exit("Release already exists!")
 
-datetime = int(open(ANDROID_BUILD_TOP + "/out/build_date.txt", "r").read())
+props = open(OUT + "/system/build.prop", "r").read().splitlines()
+for line in props:
+    if "ro.build.date.utc" in line:
+        datetime = int(line.replace("ro.build.date.utc=", ""))
+
 url = "https://github.com/ProjectStreak-Devices/" + repo.name + "/releases/download/" + tag + "/" + zipName
 checksum = open(zip + ".sha256sum", "r").read().split(" ")[0]
 filesize = os.path.getsize(zip)
